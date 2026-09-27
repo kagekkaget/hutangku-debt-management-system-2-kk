@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --color-kertas: #f6f1e7;
+  --color-kertas-2: #efe7d8;
+  --color-kartu: #fffcf5;
+  --color-garis: #e2d8c6;
+  --color-garis-2: #d3c6ae;
+  --color-tinta: #16221c;
+  --color-daun: #0f4a34;
+  --color-daun-tua: #0a2e20;
+  --color-daun-muda: #e6ede6;
+  --color-abu: #6e7268;
+  --color-abu-2: #8d8f83;
+  --color-merah: #b4402f;
+  --color-merah-muda: #f5e4de;
+  --color-kuning: #c4881f;
+  --color-kuning-muda: #f6ecd4;
+
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", monospace;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--color-kertas);
+    color: var(--color-tinta);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01";
+  }
+  ::selection {
+    background: var(--color-daun);
+    color: var(--color-kertas);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-daun);
+    outline-offset: 2px;
+  }
+  input,
+  select,
+  textarea,
+  button {
+    font-family: inherit;
+  }
+}
+
+@layer utilities {
+  .smallcaps {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    font-size: 0.6875rem;
+    line-height: 1.2;
+  }
+  .num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+  .display {
+    font-family: var(--font-display);
+    font-variation-settings: "SOFT" 0, "WONK" 1;
+  }
+  .paper-grain {
+    background-image: url("/images/paper-texture.jpg");
+    background-size: 520px;
+    mix-blend-mode: multiply;
+    opacity: 0.22;
+    pointer-events: none;
+  }
+  .receipt-edge {
+    -webkit-mask-image: linear-gradient(#000 0 0);
+  }
+  .hairline {
+    border-color: var(--color-garis);
+  }
+  .scroll-slim {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-garis-2) transparent;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes hk-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-kertas-2);
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.65),
+    transparent
+  );
+  animation: hk-shimmer 1.4s infinite;
+}
