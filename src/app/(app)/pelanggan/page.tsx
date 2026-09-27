@@ -49,8 +49,21 @@ export default function PelangganPage() {
   }, []);
 
   useEffect(() => {
-    load();
-  }, [load]);
+    let active = true;
+    const run = async () => {
+      const [c, d] = await Promise.all([
+        fetch("/api/customers", { cache: "no-store" }).then((r) => r.json()),
+        fetch("/api/debts", { cache: "no-store" }).then((r) => r.json()),
+      ]);
+      if (!active) return;
+      setCustomers(c.customers ?? []);
+      setDebts(d.debts ?? []);
+    };
+    void run();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const filtered = useMemo(() => {
     const list = customers ?? [];

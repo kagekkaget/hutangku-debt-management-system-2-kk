@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17382b"/>
+      <stop offset="1" stop-color="#0d2419"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1200" fill="url(#bg)"/>
+
+  <!-- buku besar terbuka (flatlay) -->
+  <g transform="translate(240 300)">
+    <path d="M0 90 L280 20 L560 90 L560 500 L280 430 L0 500 Z" fill="#f6f1e7"/>
+    <path d="M560 90 L840 20 L1120 90 L1120 500 L840 430 L560 500 Z" fill="#efe7d8"/>
+    <path d="M560 90 L560 500" stroke="#d3c6ae" stroke-width="4"/>
+    <path d="M280 20 L280 430" stroke="#e2d8c6" stroke-width="3"/>
+    <path d="M840 20 L840 430" stroke="#e2d8c6" stroke-width="3"/>
+    <g stroke="#8d8f83" stroke-width="3" opacity="0.65">
+      <path d="M34 140 h200"/><path d="M34 190 h200"/><path d="M34 240 h160"/>
+      <path d="M34 290 h200"/><path d="M34 340 h120"/>
+      <path d="M606 140 h200"/><path d="M606 190 h200"/><path d="M606 240 h176"/>
+      <path d="M606 290 h200"/><path d="M606 340 h140"/>
+    </g>
+    <!-- angka kolom kanan -->
+    <g font-family="monospace" font-size="26" fill="#16221c" opacity="0.75">
+      <text x="1010" y="148">238.000</text>
+      <text x="1010" y="198">96.000</text>
+      <text x="1010" y="248">428.000</text>
+      <text x="1010" y="298">74.000</text>
+      <text x="1010" y="348">186.000</text>
+    </g>
+  </g>
+
+  <!-- pen ujung bulat -->
+  <g transform="rotate(18 1120 820)">
+    <rect x="900" y="808" width="260" height="24" rx="12" fill="#0f4a34"/>
+    <rect x="1156" y="808" width="34" height="24" rx="8" fill="#c4881f"/>
+    <circle cx="1196" cy="820" r="14" fill="#e8a957"/>
+  </g>
+
+  <!-- koin bertumpuk -->
+  <g transform="translate(230 860)">
+    <ellipse cx="90" cy="86" rx="90" ry="30" fill="#b98f2a"/>
+    <rect x="0" y="48" width="180" height="38" fill="#e8a957"/>
+    <ellipse cx="90" cy="48" rx="90" ry="30" fill="#f6c95f"/>
+    <ellipse cx="90" cy="34" rx="90" ry="30" fill="#e8a957"/>
+    <ellipse cx="90" cy="20" rx="90" ry="30" fill="#f6c95f"/>
+    <ellipse cx="90" cy="6" rx="90" ry="30" fill="#e8a957"/>
+    <text x="90" y="16" text-anchor="middle" font-family="monospace" font-size="26" fill="#8a5f11">Rp</text>
+  </g>
+
+  <!-- kalkulator -->
+  <g transform="translate(1180 880)">
+    <rect width="220" height="240" rx="18" fill="#16221c" opacity="0.9"/>
+    <rect x="20" y="22" width="180" height="56" rx="8" fill="#2f6b4f"/>
+    <text x="188" y="62" text-anchor="end" font-family="monospace" font-size="30" fill="#e6ede6">4.8jt</text>
+    <g fill="#e6ede6" opacity="0.85">
+      <rect x="20" y="96" width="38" height="30" rx="6"/>
+      <rect x="68" y="96" width="38" height="30" rx="6"/>
+      <rect x="116" y="96" width="38" height="30" rx="6"/>
+      <rect x="164" y="96" width="38" height="30" rx="6"/>
+      <rect x="20" y="138" width="38" height="30" rx="6"/>
+      <rect x="68" y="138" width="38" height="30" rx="6"/>
+      <rect x="116" y="138" width="38" height="30" rx="6"/>
+      <rect x="164" y="138" width="38" height="30" rx="6" fill="#c4881f"/>
+      <rect x="20" y="180" width="38" height="30" rx="6"/>
+      <rect x="68" y="180" width="38" height="30" rx="6"/>
+      <rect x="116" y="180" width="38" height="30" rx="6"/>
+      <rect x="164" y="180" width="38" height="30" rx="6"/>
+    </g>
+  </g>
+
+  <!-- butiran debu -->
+  <g fill="#f6f1e7" opacity="0.28">
+    <circle cx="520" cy="180" r="4"/><circle cx="760" cy="140" r="3"/>
+    <circle cx="1320" cy="240" r="4"/><circle cx="180" cy="240" r="3"/>
+    <circle cx="980" cy="1200" r="4"/><circle cx="420" cy="1120" r="3"/>
+  </g>
+</svg>

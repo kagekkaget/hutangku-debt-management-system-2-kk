@@ -30,6 +30,9 @@ export default function PengingatPage() {
   const [filter, setFilter] = useState<string>("semua");
   const [kirimId, setKirimId] = useState<number | null>(null);
   const [terkirim, setTerkirim] = useState<Record<number, string>>({});
+  // Referensi waktu stabil untuk filter — diambil sekali saat komponen pertama
+  // kali dirender agar tetap murni (tidak memanggil Date.now() saat render).
+  const [now] = useState(() => Date.now());
   const { notify, node } = useNotice();
 
   const load = useCallback(async () => {
@@ -39,22 +42,30 @@ export default function PengingatPage() {
   }, []);
 
   useEffect(() => {
-    load();
-  }, [load]);
+    let active = true;
+    const run = async () => {
+      const res = await fetch("/api/reminders", { cache: "no-store" });
+      const data = await res.json();
+      if (!active) return;
+      setRows(data.reminders ?? []);
+    };
+    void run();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const filtered = useMemo(() => {
     const list = rows ?? [];
     if (filter === "terlambat") return list.filter((r) => r.terlambat > 0);
     if (filter === "pekan")
       return list.filter((r) => {
-        const d = Math.round(
-          (new Date(r.dueDate).getTime() - Date.now()) / 86_400_000,
-        );
+        const d = Math.round((new Date(r.dueDate).getTime() - now) / 86_400_000);
         return d >= 0 && d <= 7;
       });
     if (filter === "belum") return list.filter((r) => !r.remindedAt);
     return list;
-  }, [rows, filter]);
+  }, [rows, filter, now]);
 
   const totalTagih = (rows ?? []).reduce((a, b) => a + b.sisa, 0);
   const terlambat = (rows ?? []).filter((r) => r.terlambat > 0);

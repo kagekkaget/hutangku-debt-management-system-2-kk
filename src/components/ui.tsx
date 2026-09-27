@@ -357,10 +357,7 @@ export function CountUp({
   const from = useRef(0);
 
   useEffect(() => {
-    if (reduce) {
-      setShown(value);
-      return;
-    }
+    if (reduce) return;
     const start = performance.now();
     const initial = from.current;
     let frame = 0;
@@ -375,6 +372,7 @@ export function CountUp({
     return () => cancelAnimationFrame(frame);
   }, [value, duration, reduce]);
 
+  if (reduce) return <>{format(value)}</>;
   return <>{format(shown)}</>;
 }
 

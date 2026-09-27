@@ -7,6 +7,12 @@ if (!databaseUrl) {
   throw new Error("DATABASE_URL is required");
 }
 
+/**
+ * Connection string Neon memuat `sslmode=require`, yang oleh `pg` diperlakukan
+ * setara `verify-full` (verifikasi sertifikat terhadap CA sistem). Karena itu
+ * kita cukup meneruskan URL apa adanya — tidak perlu menonaktifkan
+ * `rejectUnauthorized`.
+ */
 const globalForDb = globalThis as typeof globalThis & {
   __arenaNextJsPostgresqlPool?: Pool;
 };

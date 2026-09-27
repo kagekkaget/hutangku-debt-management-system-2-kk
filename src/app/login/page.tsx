@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Lock, Mail, Store } from "lucide-react";
 import { Btn, Field, Input } from "@/components/ui";
@@ -44,9 +45,12 @@ export default function LoginPage() {
     <div className="grid min-h-screen lg:grid-cols-[1.05fr_1fr]">
       {/* Panel kiri: suasana warung */}
       <aside className="relative hidden overflow-hidden bg-daun-tua lg:block">
-        <img
+        <Image
           src="/images/login-warung.jpg"
           alt="Meja kasir warung kecil di sore hari"
+          fill
+          priority
+          sizes="50vw"
           className="absolute inset-0 h-full w-full object-cover opacity-75"
           style={{ objectPosition: "50% 45%" }}
         />

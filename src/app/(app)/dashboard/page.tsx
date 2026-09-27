@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -42,20 +43,25 @@ export default function DashboardPage() {
   const [data, setData] = useState<Overview | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const load = useCallback(async () => {
-    try {
-      const res = await fetch("/api/overview", { cache: "no-store" });
-      if (!res.ok) throw new Error();
-      setData(await res.json());
-      setError(null);
-    } catch {
-      setError("Gagal memuat ringkasan. Muat ulang halaman.");
-    }
-  }, []);
-
   useEffect(() => {
-    load();
-  }, [load]);
+    let active = true;
+    const run = async () => {
+      try {
+        const res = await fetch("/api/overview", { cache: "no-store" });
+        if (!res.ok) throw new Error();
+        const body = await res.json();
+        if (!active) return;
+        setData(body);
+        setError(null);
+      } catch {
+        if (active) setError("Gagal memuat ringkasan. Muat ulang halaman.");
+      }
+    };
+    void run();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const s = data?.summary;
   const buckets = s?.buckets;
@@ -77,10 +83,12 @@ export default function DashboardPage() {
     <div>
       {/* ---------------------------------------------------------- pita aging */}
       <section className="relative overflow-hidden bg-daun-tua text-kertas">
-        <img
+        <Image
           src="/images/ledger-flatlay.jpg"
           alt=""
           aria-hidden
+          fill
+          sizes="100vw"
           className="absolute inset-0 h-full w-full object-cover opacity-[0.18]"
           style={{ objectPosition: "25% 55%" }}
         />

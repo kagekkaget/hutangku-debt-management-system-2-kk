@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a2e20"/>
+      <stop offset="0.42" stop-color="#15493a"/>
+      <stop offset="0.72" stop-color="#c2762f"/>
+      <stop offset="1" stop-color="#e8a957"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.72" cy="0.68" r="0.5">
+      <stop offset="0" stop-color="#ffd79a" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ffd79a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b2a1c"/>
+      <stop offset="1" stop-color="#1a120b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- langit senja -->
+  <rect width="1200" height="1600" fill="url(#sky)"/>
+  <rect width="1200" height="1600" fill="url(#glow)"/>
+
+  <!-- siluet bukit / atap rumah -->
+  <path d="M0 980 L180 880 L330 960 L520 820 L700 940 L880 850 L1050 960 L1200 890 L1200 1120 L0 1120 Z" fill="#0d2419" opacity="0.85"/>
+
+  <!-- lantai kayu -->
+  <rect y="1120" width="1200" height="480" fill="url(#floor)"/>
+  <g stroke="#4a3523" stroke-width="2" opacity="0.35">
+    <path d="M0 1180 H1200"/><path d="M0 1250 H1200"/><path d="M0 1325 H1200"/>
+    <path d="M0 1405 H1200"/><path d="M0 1495 H1200"/>
+  </g>
+
+  <!-- meja kasir kayu -->
+  <rect x="180" y="1140" width="840" height="34" rx="6" fill="#7a5232"/>
+  <rect x="180" y="1174" width="840" height="16" fill="#5c3d24"/>
+  <rect x="240" y="1190" width="26" height="180" fill="#4a3220"/>
+  <rect x="934" y="1190" width="26" height="180" fill="#4a3220"/>
+
+  <!-- kotak kas -->
+  <rect x="700" y="1060" width="180" height="80" rx="8" fill="#2f6b4f"/>
+  <rect x="700" y="1060" width="180" height="18" rx="8" fill="#f6f1e7" opacity="0.85"/>
+  <circle cx="740" cy="1108" r="10" fill="#e8a957"/>
+  <circle cx="740" cy="1108" r="4" fill="#2f6b4f"/>
+
+  <!-- buku kas terbuka -->
+  <g transform="translate(300 1030)">
+    <path d="M0 60 L150 20 L300 60 L300 128 L150 96 L0 128 Z" fill="#f6f1e7"/>
+    <path d="M150 20 L150 96" stroke="#c9bda6" stroke-width="3"/>
+    <g stroke="#8d8f83" stroke-width="2.5" opacity="0.7">
+      <path d="M22 74 h100"/><path d="M22 88 h100"/><path d="M22 102 h74"/>
+      <path d="M178 74 h100"/><path d="M178 88 h100"/><path d="M178 102 h62"/>
+    </g>
+  </g>
+
+  <!-- pensil -->
+  <g transform="rotate(-24 560 1010)">
+    <rect x="520" y="1000" width="150" height="18" rx="6" fill="#e8a957"/>
+    <path d="M670 1000 l26 9 l-26 9 z" fill="#16221c"/>
+    <rect x="508" y="1000" width="14" height="18" rx="4" fill="#b4402f"/>
+  </g>
+
+  <!-- gelas / toples -->
+  <g transform="translate(940 1000)">
+    <rect x="0" y="30" width="86" height="110" rx="12" fill="#cfe0d4" opacity="0.5"/>
+    <rect x="0" y="30" width="86" height="20" rx="10" fill="#cfe0d4" opacity="0.8"/>
+    <rect x="10" y="70" width="66" height="66" rx="8" fill="#e8a957" opacity="0.75"/>
+  </g>
+
+  <!-- udara hangat / cahaya jendela -->
+  <g opacity="0.5">
+    <path d="M830 1120 L900 960 L1010 960 L940 1120 Z" fill="#ffd79a" opacity="0.22"/>
+  </g>
+
+  <!-- butiran -->
+  <g fill="#ffd79a" opacity="0.35">
+    <circle cx="420" cy="760" r="3"/><circle cx="620" cy="700" r="2"/>
+    <circle cx="880" cy="790" r="2.5"/><circle cx="250" cy="850" r="2"/>
+    <circle cx="1050" cy="720" r="3"/><circle cx="540" cy="900" r="1.8"/>
+  </g>
+</svg>

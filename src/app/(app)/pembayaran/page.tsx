@@ -24,8 +24,18 @@ export default function PembayaranPage() {
   }, []);
 
   useEffect(() => {
-    load();
-  }, [load]);
+    let active = true;
+    const run = async () => {
+      const res = await fetch("/api/payments", { cache: "no-store" });
+      const data = await res.json();
+      if (!active) return;
+      setPayments(data.payments ?? []);
+    };
+    void run();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const bulanIni = useMemo(() => {
     const now = new Date();

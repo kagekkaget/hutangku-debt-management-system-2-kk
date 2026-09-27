@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Download, Send } from "lucide-react";
@@ -33,18 +34,22 @@ export default function LaporanPage() {
   const [debts, setDebts] = useState<DebtRow[] | null>(null);
   const [customers, setCustomers] = useState<CustomerRow[]>([]);
 
-  const load = useCallback(async () => {
-    const [d, c] = await Promise.all([
-      fetch("/api/debts", { cache: "no-store" }).then((r) => r.json()),
-      fetch("/api/customers", { cache: "no-store" }).then((r) => r.json()),
-    ]);
-    setDebts(d.debts ?? []);
-    setCustomers(c.customers ?? []);
-  }, []);
-
   useEffect(() => {
-    load();
-  }, [load]);
+    let active = true;
+    const run = async () => {
+      const [d, c] = await Promise.all([
+        fetch("/api/debts", { cache: "no-store" }).then((r) => r.json()),
+        fetch("/api/customers", { cache: "no-store" }).then((r) => r.json()),
+      ]);
+      if (!active) return;
+      setDebts(d.debts ?? []);
+      setCustomers(c.customers ?? []);
+    };
+    void run();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const berjalan = (debts ?? []).filter((d) => d.sisa > 0.5);
   const total = berjalan.reduce((a, b) => a + b.sisa, 0);
@@ -100,10 +105,12 @@ export default function LaporanPage() {
     <div>
       {/* pita laporan */}
       <section className="relative overflow-hidden border-b border-garis bg-daun text-kertas">
-        <img
+        <Image
           src="/images/ledger-flatlay.jpg"
           alt=""
           aria-hidden
+          fill
+          sizes="100vw"
           className="absolute inset-0 h-full w-full object-cover opacity-[0.16]"
           style={{ objectPosition: "70% 50%" }}
         />

@@ -61,16 +61,29 @@ export default function PiutangPage() {
   }, []);
 
   useEffect(() => {
-    load();
-    if (
-      typeof window !== "undefined" &&
-      new URLSearchParams(window.location.search).get("baru")
-    ) {
-      setForm(emptyForm);
-      setEditing(null);
-      setFormOpen(true);
-    }
-  }, [load]);
+    let active = true;
+    const run = async () => {
+      const [d, c] = await Promise.all([
+        fetch("/api/debts", { cache: "no-store" }).then((r) => r.json()),
+        fetch("/api/customers", { cache: "no-store" }).then((r) => r.json()),
+      ]);
+      if (!active) return;
+      setDebts(d.debts ?? []);
+      setCustomers(c.customers ?? []);
+      if (
+        typeof window !== "undefined" &&
+        new URLSearchParams(window.location.search).get("baru")
+      ) {
+        setForm(emptyForm);
+        setEditing(null);
+        setFormOpen(true);
+      }
+    };
+    void run();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const rows = useMemo(() => {
     const list = debts ?? [];
